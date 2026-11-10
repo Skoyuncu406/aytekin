@@ -1,16 +1,8 @@
-/** @type {import('next').NextConfig} */
+import path from "node:path";
+
 const nextConfig = {
-  /* config options here */
-  experimental: {
-    agentFeedback: true,
-  },
   turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
+    root: path.resolve(process.cwd()),
   },
 };
 

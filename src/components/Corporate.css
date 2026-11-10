@@ -1,0 +1,303 @@
+
+.ay-corporate {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #f5f0e8;
+  color: #302c27;
+
+  scroll-margin-top: var(
+    --header-scrolled,
+    82px
+  );
+}
+
+/* BACKGROUND */
+
+.ay-corporate-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(250, 248, 244, 0.92) 0%,
+      rgba(250, 248, 244, 0.84) 45%,
+      rgba(250, 248, 244, 0.64) 100%
+    ),
+    url("/images/hero-architecture.jpg");
+
+  background-position: center, center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ay-corporate-container {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 96px), 1360px);
+  margin: 0 auto;
+  padding: 72px 0 38px;
+}
+
+/* INTRO */
+
+.ay-corporate-intro {
+  max-width: 1120px;
+}
+
+.ay-corporate-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #8e6b43;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.ay-corporate-eyebrow-line {
+  width: 32px;
+  height: 1px;
+  background: #b58b57;
+}
+
+.ay-corporate-title {
+  margin: 0;
+  font-family: var(--font-italiana), Georgia, serif;
+  font-size: clamp(48px, 5.8vw, 88px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.ay-corporate-title em {
+  color: #a37c4f;
+  font-style: normal;
+}
+
+/* CONTENT */
+
+.ay-corporate-content {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(35px, 5vw, 85px);
+  align-items: start;
+  margin-top: 43px;
+}
+
+.ay-corporate-index {
+  display: block;
+  margin-bottom: 13px;
+  color: #957247;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.ay-corporate-content-heading h3 {
+  margin: 0;
+  font-family: var(--font-italiana), Georgia, serif;
+  font-size: clamp(33px, 3.3vw, 52px);
+  font-weight: 400;
+  line-height: 1.14;
+}
+
+.ay-corporate-description {
+  max-width: 580px;
+}
+
+.ay-corporate-description p {
+  margin: 0 0 14px;
+  color: #514a41;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.ay-corporate-description .ay-corporate-lead {
+  margin-bottom: 16px;
+  color: #302c27;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* CTA */
+
+.ay-corporate-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 8px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(48, 44, 39, 0.65);
+  color: #302c27;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.ay-corporate-link svg {
+  transition: transform 0.3s ease;
+}
+
+.ay-corporate-link:hover {
+  color: #a37c4f;
+}
+
+.ay-corporate-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* SIGNATURE */
+
+.ay-corporate-bottom {
+  margin-top: 48px;
+}
+
+.ay-corporate-bottom-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(48, 44, 39, 0.2);
+}
+
+.ay-corporate-bottom-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 19px;
+}
+
+.ay-corporate-bottom-inner > span:first-child {
+  color: #70685c;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.13em;
+}
+
+.ay-corporate-signature {
+  color: #a37c4f;
+  font-family: var(--font-italiana), Georgia, serif;
+  font-size: clamp(19px, 2.2vw, 29px);
+  line-height: 1;
+}
+
+/* TABLET */
+
+@media (max-width: 1024px) {
+  .ay-corporate-container {
+    width: calc(100% - 64px);
+    padding: 64px 0 35px;
+  }
+
+  .ay-corporate-title {
+    font-size: clamp(48px, 6.6vw, 72px);
+  }
+
+  .ay-corporate-content {
+    gap: 30px;
+    margin-top: 36px;
+  }
+
+  .ay-corporate-content-heading h3 {
+    font-size: clamp(32px, 4vw, 43px);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+  .ay-corporate {
+    scroll-margin-top: var(--mobile-scrolled, 72px);
+  }
+
+  .ay-corporate-visual {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(250, 248, 244, 0.87) 0%,
+        rgba(250, 248, 244, 0.79) 45%,
+        rgba(250, 248, 244, 0.92) 100%
+      ),
+      url("/images/hero-architecture.jpg");
+
+    background-position: center, 60% center;
+  }
+
+  .ay-corporate-container {
+    width: calc(100% - 40px);
+    padding: 52px 0 30px;
+  }
+
+  .ay-corporate-eyebrow {
+    margin-bottom: 16px;
+    font-size: 10px;
+  }
+
+  .ay-corporate-title {
+    font-size: clamp(38px, 8.5vw, 60px);
+    line-height: 1.08;
+  }
+
+  .ay-corporate-content {
+    grid-template-columns: 1fr;
+    gap: 23px;
+    margin-top: 32px;
+  }
+
+  .ay-corporate-content-heading h3 {
+    font-size: clamp(33px, 7vw, 44px);
+  }
+
+  .ay-corporate-description p {
+    margin-bottom: 13px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .ay-corporate-description .ay-corporate-lead {
+    font-size: 15px;
+  }
+
+  .ay-corporate-bottom {
+    margin-top: 39px;
+  }
+
+  .ay-corporate-bottom-inner {
+    padding-top: 17px;
+  }
+
+  .ay-corporate-signature {
+    font-size: 18px;
+    text-align: right;
+  }
+}
+
+@media (max-width: 390px) {
+  .ay-corporate-container {
+    width: calc(100% - 32px);
+  }
+
+  .ay-corporate-title {
+    font-size: clamp(35px, 9vw, 42px);
+  }
+
+  .ay-corporate-signature {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-corporate-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+}

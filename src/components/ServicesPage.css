@@ -1,0 +1,694 @@
+/* =========================================
+   AYTEKIN - SERVICES PAGE
+========================================= */
+
+.ay-services-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow: clip;
+  background: #f6f1e9;
+  color: #302c27;
+  padding-top: var(--ay-current-nav-height, 104px);
+}
+
+.ay-services-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(250,248,244,.96) 0%,
+      rgba(250,248,244,.91) 43%,
+      rgba(250,248,244,.79) 100%
+    ),
+    url("/images/hero-architecture.jpg");
+
+  background-position: center, center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ay-services-shell {
+  width: min(calc(100% - 96px), 1440px);
+  margin: 0 auto;
+  padding: 64px 0 85px;
+}
+
+/* PAGE HEADING */
+
+.ay-services-heading {
+  margin-bottom: 58px;
+}
+
+.ay-services-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #967247;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+.ay-services-eyebrow span {
+  width: 32px;
+  height: 1px;
+  background: #b58b57;
+}
+
+.ay-services-heading h1 {
+  margin: 15px 0 9px;
+  font-family: var(--font-italiana), Georgia, serif;
+  font-size: clamp(55px, 6vw, 92px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+
+.ay-services-heading h1 span {
+  color: #b58b57;
+}
+
+.ay-services-heading > p {
+  max-width: 640px;
+  color: #655b50;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* TWO COLUMN LAYOUT */
+
+.ay-services-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(250px, 28%)
+    minmax(0, 1fr);
+  gap: clamp(42px, 6vw, 105px);
+  align-items: start;
+}
+
+/* DESKTOP SIDEBAR */
+
+.ay-services-sidebar {
+  position: sticky;
+  top: calc(var(--header-scrolled, 82px) + 25px);
+  min-width: 0;
+}
+
+.ay-services-sidebar-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 16px;
+  color: #8b704f;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .17em;
+}
+
+.ay-services-list {
+  border-top: 1px solid rgba(48,44,39,.24);
+}
+
+.ay-service-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-height: 59px;
+  padding: 12px 2px;
+  border: 0;
+  border-bottom: 1px solid rgba(48,44,39,.17);
+  background: transparent;
+  color: #62584d;
+  text-align: left;
+  cursor: pointer;
+  transition: color .3s ease, padding .3s ease;
+}
+
+.ay-service-number {
+  flex-shrink: 0;
+  color: #a18b70;
+  font-size: 10px;
+}
+
+.ay-service-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.ay-service-item svg {
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translate(-5px, 5px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.ay-service-item:hover,
+.ay-service-item.is-active {
+  color: #9c7141;
+  padding-left: 8px;
+}
+
+.ay-service-item:hover svg,
+.ay-service-item.is-active svg {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.ay-service-item.is-active .ay-service-name {
+  font-weight: 600;
+}
+
+.ay-services-sidebar-note {
+  max-width: 260px;
+  margin-top: 24px;
+  color: #82786c;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* DETAIL */
+
+.ay-services-detail {
+  min-width: 0;
+}
+
+.ay-services-detail-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 40px;
+}
+
+.ay-services-counter {
+  color: #9c7141;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1em;
+}
+
+.ay-services-counter span {
+  color: #a99e91;
+}
+
+.ay-services-mobile-toggle {
+  display: none;
+}
+
+.ay-services-detail-content {
+  animation: ay-services-fade .45s ease both;
+}
+
+@keyframes ay-services-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ay-services-detail-label {
+  margin: 5px 0 16px;
+  color: #99734a;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+.ay-services-detail h2 {
+  max-width: 850px;
+  margin: 0;
+  font-family: var(--font-italiana), Georgia, serif;
+  font-size: clamp(47px, 5.2vw, 82px);
+  font-weight: 400;
+  line-height: 1.07;
+  letter-spacing: -.025em;
+  overflow-wrap: break-word;
+}
+
+.ay-services-subtitle {
+  margin: 16px 0 0;
+  color: #a17a4b;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.ay-services-detail-rule {
+  width: 100%;
+  height: 1px;
+  margin: 30px 0;
+  background: rgba(48,44,39,.23);
+}
+
+.ay-services-lead {
+  max-width: 750px;
+  margin: 0 0 22px;
+  color: #302c27;
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.ay-services-paragraphs {
+  max-width: 750px;
+}
+
+.ay-services-paragraphs p {
+  margin: 0 0 17px;
+  color: #575046;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* FEATURES */
+
+.ay-services-features {
+  margin-top: 39px;
+}
+
+.ay-services-features-title {
+  color: #99734a;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .18em;
+}
+
+.ay-services-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 35px;
+  margin-top: 15px;
+  border-top: 1px solid rgba(48,44,39,.2);
+}
+
+.ay-services-feature {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  min-height: 61px;
+  border-bottom: 1px solid rgba(48,44,39,.16);
+}
+
+.ay-services-feature > span {
+  color: #a88b67;
+  font-size: 10px;
+}
+
+.ay-services-feature p {
+  margin: 0;
+  color: #433b32;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* CTA */
+
+.ay-services-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 38px;
+  padding: 0 0 11px;
+  border-bottom: 1px solid #302c27;
+  color: #302c27;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color .3s ease, border-color .3s ease;
+}
+
+.ay-services-cta svg {
+  transition: transform .3s ease;
+}
+
+.ay-services-cta:hover {
+  color: #9c7141;
+  border-color: #9c7141;
+}
+
+.ay-services-cta:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* DRAWER HIDDEN ON DESKTOP */
+
+.ay-services-drawer,
+.ay-services-drawer-backdrop {
+  display: none;
+}
+
+/* =========================================
+   TABLET & MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+  .ay-services-shell {
+    width: calc(100% - 48px);
+    padding: 42px 0 65px;
+  }
+
+  .ay-services-heading {
+    margin-bottom: 33px;
+  }
+
+  .ay-services-heading h1 {
+    font-size: clamp(49px, 8vw, 72px);
+  }
+
+  .ay-services-layout {
+    display: block;
+  }
+
+  .ay-services-sidebar {
+    display: none;
+  }
+
+  .ay-services-detail-top {
+    justify-content: space-between;
+    min-height: 50px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(48,44,39,.22);
+  }
+
+  .ay-services-mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: #302c27;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .ay-services-detail h2 {
+    font-size: clamp(44px, 7vw, 65px);
+  }
+
+  .ay-services-drawer-backdrop {
+    display: block;
+    position: fixed;
+    top: var(--ay-current-nav-height, 72px);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 199;
+    background: rgba(22,20,18,.48);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .35s ease, visibility .35s ease;
+  }
+
+  .ay-services-drawer-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .ay-services-drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--ay-current-nav-height, 72px);
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    width: min(84vw, 390px);
+    max-width: 100%;
+    padding: 14px 20px 12px;
+    overflow: hidden;
+    background: #f8f4ed;
+    box-shadow: 15px 0 50px rgba(0,0,0,.12);
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition:
+      transform .45s cubic-bezier(.22,1,.36,1),
+      visibility .45s ease;
+  }
+
+  .ay-services-drawer.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .ay-services-drawer-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(48,44,39,.2);
+  }
+
+  .ay-services-drawer-header > div > span {
+    color: #99734a;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .16em;
+  }
+
+  .ay-services-drawer-header h2 {
+    margin: 5px 0 0;
+    font-family: var(--font-italiana), Georgia, serif;
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  .ay-services-drawer-header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(48,44,39,.25);
+    border-radius: 50%;
+    background: transparent;
+    color: #302c27;
+  }
+
+  .ay-services-drawer-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 5px 0 0;
+  }
+
+  .ay-services-drawer-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1 1 0;
+    width: 100%;
+    min-height: 0;
+    padding: 3px 0;
+    border: 0;
+    border-bottom: 1px solid rgba(48,44,39,.14);
+    background: transparent;
+    color: #5b5146;
+    text-align: left;
+  }
+
+  .ay-services-drawer-item > span {
+    color: #aa8c69;
+    font-size: 10px;
+  }
+
+  .ay-services-drawer-item strong {
+    flex: 1;
+    font-size: clamp(11px, 1.65vh, 14px);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .ay-services-drawer-item svg {
+    flex-shrink: 0;
+  }
+
+  .ay-services-drawer-item.is-active {
+    color: #9c7141;
+  }
+
+  .ay-services-drawer-item.is-active strong {
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 639px) {
+  .ay-services-background {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(250,248,244,.9),
+        rgba(250,248,244,.86) 50%,
+        rgba(250,248,244,.96)
+      ),
+      url("/images/hero-architecture.jpg");
+    background-position: center, 60% center;
+  }
+
+  .ay-services-shell {
+    width: calc(100% - 36px);
+    padding: 34px 0 50px;
+  }
+
+  .ay-services-heading {
+    margin-bottom: 24px;
+  }
+
+  .ay-services-eyebrow {
+    font-size: 9px;
+  }
+
+  .ay-services-heading h1 {
+    font-size: clamp(44px, 10vw, 61px);
+  }
+
+  .ay-services-heading > p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .ay-services-detail-top {
+    margin-bottom: 19px;
+  }
+
+  .ay-services-detail h2 {
+    font-size: clamp(41px, 10vw, 55px);
+  }
+
+  .ay-services-subtitle {
+    margin-top: 12px;
+    font-size: 16px;
+  }
+
+  .ay-services-detail-rule {
+    margin: 23px 0;
+  }
+
+  .ay-services-lead {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .ay-services-paragraphs p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .ay-services-features {
+    margin-top: 30px;
+  }
+
+  .ay-services-feature-grid {
+    column-gap: 16px;
+  }
+
+  .ay-services-feature {
+    gap: 8px;
+    min-height: 65px;
+  }
+
+  .ay-services-feature p {
+    font-size: 12px;
+  }
+
+  .ay-services-cta {
+    margin-top: 30px;
+    font-size: 13px;
+  }
+
+  .ay-services-drawer {
+    padding: 12px 16px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-services-detail-content {
+    animation: none;
+  }
+
+  .ay-services-drawer,
+  .ay-services-drawer-backdrop {
+    transition: none;
+  }
+}
+
+/* PREVIOUS / NEXT SERVICE CONTROLS */
+.ay-services-detail-navigation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.ay-services-nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid rgba(48, 44, 39, .28);
+  border-radius: 50%;
+  background: transparent;
+  color: #302c27;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.ay-services-nav-button:hover {
+  background: #b58b57;
+  color: #fffaf2;
+  border-color: #b58b57;
+}
+
+.ay-services-nav-button:focus-visible {
+  outline: 2px solid #b58b57;
+  outline-offset: 3px;
+}
+
+.ay-services-counter {
+  min-width: 54px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .ay-services-detail-navigation { gap: 9px; }
+  .ay-services-nav-button { width: 35px; height: 35px; }
+}
+
+@media (max-width: 390px) {
+  .ay-services-detail-navigation { gap: 5px; }
+  .ay-services-nav-button { width: 31px; height: 31px; }
+  .ay-services-counter { min-width: 43px; font-size: 11px; }
+}
+
+/* Very short landscape screens: preserve readable access to all services. */
+@media (max-width: 900px) and (max-height: 510px) {
+  .ay-services-drawer-list {
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .ay-services-drawer-list::-webkit-scrollbar { display: none; }
+  .ay-services-drawer-item { flex: 0 0 auto; min-height: 36px; }
+}
+

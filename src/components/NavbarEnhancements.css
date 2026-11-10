@@ -1,0 +1,356 @@
+
+/* =========================================
+   AYTEKİN OTOMASYON
+   NAVBAR ENHANCEMENTS
+========================================= */
+
+/* LIVE SEARCH */
+
+.ay-live-search {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.ay-live-search .ay-search,
+.ay-live-search .ay-menu-search {
+  width: 100%;
+}
+
+.ay-search-results {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+
+  width: max(290px, 100%);
+  max-width: min(420px, calc(100vw - 28px));
+
+  padding: 10px;
+
+  background: #faf8f4;
+  color: #302c27;
+
+  border: 1px solid rgba(181, 139, 87, 0.2);
+
+  box-shadow: 0 18px 50px rgba(18, 16, 13, 0.18);
+
+  z-index: 180;
+}
+
+.ay-search-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+  width: 100%;
+
+  padding: 12px 10px;
+
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(48, 44, 39, 0.1);
+
+  color: #302c27;
+  text-align: left;
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.ay-search-result:last-child {
+  border-bottom: 0;
+}
+
+.ay-search-result:hover,
+.ay-search-result.is-selected {
+  background: rgba(181, 139, 87, 0.1);
+  color: #946a3b;
+}
+
+.ay-search-empty {
+  margin: 0;
+  padding: 12px 10px;
+
+  font-size: 13px;
+  color: #71675d;
+}
+
+/* =========================================
+   DESKTOP SERVICES DROPDOWN
+========================================= */
+
+.ay-services-nav-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+}
+
+.ay-services-nav-trigger {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.ay-services-nav-trigger svg {
+  transition: transform 0.25s ease;
+}
+
+/*
+  Dropdown oku yalnızca menü gerçekten
+  açıkken döner. Hover/focus tek başına
+  oku döndürmez.
+*/
+
+.ay-services-nav-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* DROPDOWN BASE */
+
+.ay-services-dropdown {
+  position: absolute;
+
+  top: calc(100% - 1px);
+  left: 50%;
+
+  width: 360px;
+  max-width: calc(100vw - 28px);
+
+  padding: 23px 25px 20px;
+
+  background: #faf8f4;
+  color: #302c27;
+
+  border: 1px solid rgba(181, 139, 87, 0.24);
+
+  box-shadow: 0 24px 65px rgba(25, 20, 14, 0.18);
+
+  transform: translate(-50%, 9px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.22s ease,
+    transform 0.25s ease,
+    visibility 0.22s ease;
+
+  z-index: 180;
+}
+
+/*
+  ÖNEMLİ DÜZELTME
+
+  Dropdown yalnızca React tarafından
+  is-open sınıfı verildiğinde açılır.
+
+  :hover ve :focus-within kullanılarak
+  zorla görünür yapılmaz.
+*/
+
+.ay-services-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translate(-50%, 0);
+}
+
+/* DROPDOWN HEADING */
+
+.ay-dropdown-eyebrow {
+  display: block;
+
+  padding-bottom: 13px;
+
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+
+  color: #9c7141;
+}
+
+/* DROPDOWN LIST */
+
+.ay-dropdown-list {
+  border-top: 1px solid rgba(48, 44, 39, 0.16);
+}
+
+.ay-dropdown-item {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-height: 39px;
+  padding: 8px 0;
+
+  border-bottom: 1px solid rgba(48, 44, 39, 0.11);
+
+  color: #423a31;
+  font-size: 13px;
+
+  transition:
+    color 0.2s ease,
+    padding 0.2s ease;
+}
+
+.ay-dropdown-item small {
+  flex-shrink: 0;
+
+  color: #a48a6d;
+  font-size: 10px;
+}
+
+.ay-dropdown-item span {
+  flex: 1;
+  min-width: 0;
+}
+
+.ay-dropdown-item:hover {
+  color: #a47847;
+  padding-left: 5px;
+}
+
+/* ALL SERVICES */
+
+.ay-dropdown-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 17px;
+  padding: 9px 0 2px;
+
+  color: #8d663b;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.ay-dropdown-all:hover {
+  color: #302c27;
+}
+
+/* =========================================
+   MOBILE SERVICES ACCORDION
+========================================= */
+
+.ay-mobile-services-group {
+  width: 100%;
+  min-width: 0;
+}
+
+.ay-mobile-services-toggle {
+  width: 100%;
+
+  background: transparent;
+
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+
+  text-align: left;
+  cursor: pointer;
+}
+
+.ay-mobile-services-toggle svg {
+  transition: transform 0.25s ease;
+}
+
+.ay-mobile-services-toggle svg.is-rotated {
+  transform: rotate(180deg);
+}
+
+/* MOBILE SERVICE LINKS */
+
+.ay-mobile-services-list {
+  display: flex;
+  flex-direction: column;
+
+  padding: 4px 0 10px 18px;
+}
+
+.ay-mobile-services-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(255, 250, 242, 0.16);
+
+  color: #fffaf2;
+
+  font-size: 13px;
+  line-height: 1.35;
+
+  transition: color 0.2s ease;
+}
+
+.ay-mobile-services-list a:hover {
+  color: #e5c79c;
+}
+
+.ay-mobile-services-list .ay-mobile-services-all {
+  margin-top: 5px;
+
+  color: #e5c79c;
+  font-weight: 600;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1279px) {
+  .ay-live-search.is-mobile .ay-search-results {
+    top: calc(100% + 7px);
+    left: 0;
+
+    width: 100%;
+    max-width: none;
+  }
+
+  .ay-mobile-services-toggle {
+    font-family: var(--font-italiana), serif;
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 390px) {
+  .ay-mobile-services-toggle {
+    font-size: 30px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-services-dropdown,
+  .ay-services-nav-trigger svg,
+  .ay-dropdown-item,
+  .ay-search-result,
+  .ay-mobile-services-toggle svg {
+    transition: none;
+  }
+}

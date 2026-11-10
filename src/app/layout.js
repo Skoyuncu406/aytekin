@@ -1,6 +1,7 @@
 import { Italiana, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const italiana = Italiana({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
       <body className={`${italiana.variable} ${outfit.variable}`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

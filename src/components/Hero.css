@@ -4,13 +4,13 @@
 ========================================= */
 
 .ay-hero {
-  --hero-nav-height: var(--header-height);
+  --hero-nav-height: var(--ay-current-nav-height, var(--header-height));
 
   position: relative;
   width: 100%;
   height: 270svh;
 
-  margin-top: var(--header-height);
+  margin-top: 0;
 
   background: #242729;
 }
@@ -22,10 +22,11 @@
 .ay-hero-stage {
   position: sticky;
 
-  top: var(--hero-nav-height);
+  top: 0;
 
   width: 100%;
-  height: calc(100svh - var(--hero-nav-height));
+  height: 100svh;
+  background: #242729;
 
   overflow: hidden;
   isolation: isolate;
@@ -37,7 +38,7 @@
 
 .ay-hero-background {
   position: absolute;
-  inset: 0;
+  inset: var(--hero-nav-height) 0 0;
   z-index: 0;
 
   overflow: hidden;
@@ -86,7 +87,7 @@
 
 .ay-hero-content {
   position: absolute;
-  inset: 0;
+  inset: var(--hero-nav-height) 0 0;
   z-index: 2;
 
   display: flex;
@@ -260,11 +261,11 @@
 
 .ay-hero-shutter {
   position: absolute;
-  inset: 0;
+  inset: var(--hero-nav-height) 0 0;
   z-index: 5;
 
   width: 100%;
-  height: 100%;
+  height: auto;
 
   overflow: hidden;
 
@@ -470,10 +471,10 @@
 
 @media (max-width: 1279px) {
   .ay-hero {
-    --hero-nav-height: var(--mobile-height);
+    --hero-nav-height: var(--ay-current-nav-height, var(--mobile-height));
 
     height: 270svh;
-    margin-top: var(--mobile-height);
+    margin-top: 0;
   }
 
   .ay-hero-content {
@@ -664,3 +665,6 @@
     animation: none;
   }
 }
+
+
+/* No competing override blocks below: single source of truth. */

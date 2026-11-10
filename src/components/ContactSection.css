@@ -1,0 +1,539 @@
+
+/* =========================================
+   AYTEKİN OTOMASYON
+   CONTACT SECTION — PREMIUM COMPACT
+========================================= */
+
+.ay-contact-section {
+  --contact-header-height: 82px;
+
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: calc(100svh - var(--contact-header-height));
+
+  margin: 0;
+  padding: clamp(34px, 4.5vh, 56px) 0;
+
+  overflow: clip;
+  background: #f6f2eb;
+  color: #302c27;
+
+  scroll-margin-top: var(--contact-header-height);
+}
+
+/* BACKGROUND */
+
+.ay-contact-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(250, 248, 244, 0.97) 0%,
+      rgba(250, 248, 244, 0.94) 45%,
+      rgba(250, 248, 244, 0.88) 100%
+    ),
+    url("/images/contact-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* CONTAINER */
+
+.ay-contact-container {
+  position: relative;
+  z-index: 1;
+
+  width: min(1220px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/* =========================================
+   SECTION INTRO
+========================================= */
+
+.ay-contact-intro {
+  max-width: 680px;
+  margin: 0 0 28px;
+}
+
+.ay-contact-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  margin-bottom: 13px;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: #a47b4b;
+}
+
+.ay-contact-eyebrow span {
+  display: block;
+  flex: 0 0 25px;
+  height: 1px;
+  background: #b58b57;
+}
+
+.ay-contact-intro h2 {
+  margin: 0;
+
+  font-family: var(--font-italiana), serif;
+  font-size: clamp(37px, 4vw, 57px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #302c27;
+}
+
+.ay-contact-intro h2 em {
+  font-style: normal;
+  color: #a47b4b;
+}
+
+.ay-contact-intro > p {
+  max-width: 560px;
+  margin: 12px 0 0;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #71695f;
+}
+
+/* =========================================
+   CONTENT LAYOUT
+========================================= */
+
+.ay-contact-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(0, 1.1fr);
+
+  align-items: start;
+  gap: clamp(28px, 4vw, 64px);
+}
+
+/* =========================================
+   CONTACT INFORMATION
+========================================= */
+
+.ay-contact-information {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ay-contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(48, 44, 39, 0.12);
+}
+
+.ay-contact-info-item:first-child {
+  padding-top: 4px;
+}
+
+.ay-contact-info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 22px;
+  padding-top: 2px;
+
+  color: #a47b4b;
+}
+
+.ay-contact-info-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ay-contact-info-label {
+  display: block;
+  margin-bottom: 5px;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #9c7141;
+}
+
+.ay-contact-info-content h3 {
+  margin: 0;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #302c27;
+
+  overflow-wrap: break-word;
+}
+
+.ay-contact-info-content h3 a {
+  color: inherit;
+  text-decoration: none;
+
+  transition: color 0.25s ease;
+}
+
+.ay-contact-info-content h3 a:hover {
+  color: #a47b4b;
+}
+
+/* SMALL TEXT LINKS */
+
+.ay-contact-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  width: fit-content;
+  margin-top: 7px;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9c7141;
+  text-decoration: none;
+
+  transition:
+    gap 0.25s ease,
+    color 0.25s ease;
+}
+
+.ay-contact-text-link svg {
+  flex-shrink: 0;
+}
+
+.ay-contact-text-link:hover {
+  gap: 12px;
+  color: #302c27;
+}
+
+/* =========================================
+   BOTTOM SIGNATURE
+========================================= */
+
+.ay-contact-bottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.ay-contact-bottom-line {
+  flex: 0 0 25px;
+  height: 1px;
+  background: #b58b57;
+}
+
+.ay-contact-bottom p {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  margin: 0;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #423a31;
+}
+
+.ay-contact-bottom p span {
+  font-size: 11px;
+  font-weight: 400;
+  color: #8a8177;
+}
+
+/* =========================================
+   MAP
+========================================= */
+
+.ay-contact-map-column {
+  width: 100%;
+  min-width: 0;
+}
+
+.ay-contact-map-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding-bottom: 11px;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  color: #8b7762;
+}
+
+.ay-contact-map {
+  position: relative;
+
+  width: 100%;
+  height: clamp(230px, 29vh, 300px);
+
+  overflow: hidden;
+  background: #e8e1d6;
+  border: 1px solid rgba(48, 44, 39, 0.12);
+}
+
+.ay-contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* =========================================
+   PREMIUM DIRECTIONS LINK
+========================================= */
+
+.ay-contact-map-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+
+  width: fit-content;
+  max-width: 100%;
+
+  padding: 14px 0 11px;
+
+  font-family: var(--font-outfit), sans-serif;
+  color: #8d663b;
+  text-decoration: none;
+
+  transition: color 0.25s ease;
+}
+
+.ay-contact-map-link::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+
+  width: 100%;
+  height: 1px;
+
+  background: #b58b57;
+
+  transform: scaleX(0.2);
+  transform-origin: left center;
+
+  transition: transform 0.35s ease;
+}
+
+.ay-contact-map-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ay-contact-map-link-label svg,
+.ay-contact-map-link-arrow {
+  flex-shrink: 0;
+}
+
+.ay-contact-map-link-arrow {
+  transition: transform 0.3s ease;
+}
+
+.ay-contact-map-link:hover {
+  color: #302c27;
+}
+
+.ay-contact-map-link:hover::after {
+  transform: scaleX(1);
+}
+
+.ay-contact-map-link:hover
+.ay-contact-map-link-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* =========================================
+   LAPTOP / SMALL DESKTOP
+========================================= */
+
+@media (max-width: 1279px) {
+  .ay-contact-section {
+    --contact-header-height: 72px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ay-contact-container {
+    width: calc(100% - 56px);
+  }
+
+  .ay-contact-layout {
+    gap: 30px;
+  }
+
+  .ay-contact-map {
+    height: 255px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .ay-contact-section {
+    --contact-header-height: 72px;
+
+    min-height: calc(
+      100svh - var(--contact-header-height)
+    );
+
+    align-items: flex-start;
+
+    padding: 38px 0 46px;
+  }
+
+  .ay-contact-container {
+    width: calc(100% - 36px);
+  }
+
+  .ay-contact-intro {
+    margin-bottom: 23px;
+  }
+
+  .ay-contact-eyebrow {
+    margin-bottom: 11px;
+  }
+
+  .ay-contact-intro h2 {
+    font-size: clamp(35px, 8.5vw, 48px);
+  }
+
+  .ay-contact-intro > p {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .ay-contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .ay-contact-info-item {
+    padding: 13px 0;
+  }
+
+  .ay-contact-info-content h3 {
+    font-size: 16px;
+  }
+
+  .ay-contact-bottom {
+    margin-top: 16px;
+  }
+
+  .ay-contact-map {
+    height: 235px;
+  }
+
+  .ay-contact-map-link {
+    padding-top: 13px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 390px) {
+  .ay-contact-intro h2 {
+    font-size: 34px;
+  }
+
+  .ay-contact-map {
+    height: 215px;
+  }
+
+  .ay-contact-map-top {
+    flex-wrap: wrap;
+  }
+
+  .ay-contact-map-link-label {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   SHORT DESKTOP VIEWPORTS
+========================================= */
+
+@media (min-width: 768px) and (max-height: 720px) {
+  .ay-contact-section {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .ay-contact-intro {
+    margin-bottom: 20px;
+  }
+
+  .ay-contact-info-item {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  .ay-contact-map {
+    height: 230px;
+  }
+
+  .ay-contact-bottom {
+    margin-top: 12px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-contact-text-link,
+  .ay-contact-map-link,
+  .ay-contact-map-link::after,
+  .ay-contact-map-link-arrow,
+  .ay-contact-info-content h3 a {
+    transition: none;
+  }
+}

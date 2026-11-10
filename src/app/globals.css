@@ -88,7 +88,7 @@ a {
   background: var(--oak);
   color: var(--white);
 
-  border-bottom: 1px solid rgba(255, 250, 242, .2);
+  border-bottom: 0;
 
   transition: box-shadow .4s ease;
 }
@@ -111,7 +111,7 @@ a {
   margin: 0 auto;
   padding: 0 32px;
 
-  transition: height .5s var(--ease);
+  transition: height .18s ease-out;
 }
 
 .ay-header.scrolled .ay-header-inner {
@@ -156,23 +156,33 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-
+  flex: 0 0 25px;
   width: 25px;
   height: 30px;
-
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   color: var(--white);
+  line-height: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
 }
 
 .ay-search-icon-button svg {
-  transition:
-    transform .65s var(--ease),
-    color .3s ease;
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  transform: none;
+  transition: color .3s ease;
 }
 
 .ay-search:hover .ay-search-icon-button svg,
 .ay-search:focus-within .ay-search-icon-button svg {
-  transform: rotate(90deg);
   color: var(--ink);
 }
 
@@ -548,6 +558,19 @@ a {
 }
 
 .ay-search-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+}
+
+.ay-search-symbol svg {
+  display: block;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -1046,4 +1069,22 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+}
+
+/* =========================================
+   NAVBAR / HERO HEIGHT SYNCHRONIZATION
+========================================= */
+:root { --ay-current-nav-height: var(--header-height); }
+:root[data-ay-nav="compact"] { --ay-current-nav-height: var(--header-scrolled); }
+.ay-header-inner, .ay-header.scrolled .ay-header-inner {
+  height: var(--ay-current-nav-height);
+  transition: none;
+}
+.ay-header { border-bottom: 0; }
+.ay-mobile-menu { top: var(--ay-current-nav-height); bottom: 0; }
+.ay-mobile-menu.scrolled { top: var(--ay-current-nav-height); }
+@media (max-width: 1279px) {
+  :root { --ay-current-nav-height: var(--mobile-height); }
+  :root[data-ay-nav="compact"] { --ay-current-nav-height: var(--mobile-scrolled); }
+  .ay-header-inner, .ay-header.scrolled .ay-header-inner { height: var(--ay-current-nav-height); }
 }
