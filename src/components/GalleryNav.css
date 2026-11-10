@@ -1,0 +1,89 @@
+
+/* =========================================
+   AYTEKİN OTOMASYON
+   GALLERY NAV DROPDOWN
+========================================= */
+
+.ay-gallery-nav-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* DROPDOWN TRIGGER */
+
+.ay-gallery-nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.ay-gallery-nav-trigger svg {
+  transition: transform 0.25s ease;
+}
+
+.ay-gallery-nav-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* =========================================
+   DROPDOWN PANEL
+========================================= */
+
+.ay-gallery-dropdown {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 50%;
+
+  width: 300px;
+  max-width: calc(100vw - 28px);
+
+  padding: 23px 25px 20px;
+
+  background: #faf8f4;
+  color: #302c27;
+
+  border: 1px solid rgba(181, 139, 87, 0.24);
+
+  box-shadow:
+    0 24px 65px rgba(25, 20, 14, 0.18);
+
+  transform: translate(-50%, 9px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.22s ease,
+    transform 0.25s ease,
+    visibility 0.22s ease;
+
+  z-index: 180;
+}
+
+/* OPEN STATE */
+
+.ay-gallery-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-gallery-nav-trigger svg,
+  .ay-gallery-dropdown {
+    transition: none;
+  }
+}

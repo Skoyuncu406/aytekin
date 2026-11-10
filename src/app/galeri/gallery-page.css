@@ -1,0 +1,746 @@
+
+/* =========================================
+   AYTEKİN OTOMASYON
+   PREMIUM GALLERY PAGE
+========================================= */
+
+.ay-gallery-page {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  min-height: 100svh;
+  padding: calc(104px + 46px) 0 90px;
+  background: #faf8f4;
+  overflow-x: clip;
+}
+
+.ay-gallery-page-container {
+  width: min(100% - 48px, 1360px);
+  margin-inline: auto;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.ay-gallery-page-header {
+  margin-bottom: 44px;
+}
+
+.ay-gallery-page-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #b58b57;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.ay-gallery-page-eyebrow span {
+  width: 27px;
+  height: 1px;
+  background: currentColor;
+}
+
+.ay-gallery-page-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.ay-gallery-page-heading h1 {
+  margin: 0;
+  color: #302c27;
+  font-family: Georgia, serif;
+  font-size: clamp(48px, 5.5vw, 86px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.ay-gallery-page-heading h1 em {
+  color: #b58b57;
+  font-weight: 400;
+}
+
+.ay-gallery-page-heading p {
+  max-width: 480px;
+  margin: 23px 0 0;
+  color: #77716a;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.ay-gallery-page-count {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  padding-bottom: 5px;
+}
+
+.ay-gallery-page-count strong {
+  color: #b58b57;
+  font-family: Georgia, serif;
+  font-size: 58px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.ay-gallery-page-count span {
+  color: #77716a;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+/* =========================================
+   GALLERY GRID
+========================================= */
+
+.ay-gallery-page-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+
+/* =========================================
+   PREMIUM L FRAME
+========================================= */
+
+.ay-gallery-page-item {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  margin: 0;
+
+  /* Space between image and frame */
+  padding: 0 0 10px 10px;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  isolation: isolate;
+
+  transition: transform 350ms ease;
+}
+
+/* LEFT + BOTTOM GOLD FRAME */
+
+.ay-gallery-page-item::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 10px;
+  bottom: 0;
+  z-index: 0;
+
+  border-left: 4px solid #b58b57;
+  border-bottom: 4px solid #b58b57;
+
+  pointer-events: none;
+
+  transition: border-color 300ms ease;
+}
+
+/* IMAGE WRAPPER */
+
+.ay-gallery-image-wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #e9e2d7;
+}
+
+/* IMAGE */
+
+.ay-gallery-page-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  transition:
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* SUBTLE IMAGE OVERLAY */
+
+.ay-gallery-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: linear-gradient(
+    to top,
+    rgba(30, 25, 20, 0.24),
+    transparent 55%
+  );
+
+  pointer-events: none;
+}
+
+/* IMAGE NUMBER */
+
+.ay-gallery-page-number {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  z-index: 2;
+
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* =========================================
+   ZOOM BUTTON
+========================================= */
+
+.ay-gallery-zoom-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+
+  display: grid;
+  place-items: center;
+
+  width: 52px;
+  height: 52px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+
+  background: rgba(48, 44, 39, 0.58);
+  color: #fff;
+
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: 0;
+  transform: translate(-50%, -40%);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease,
+    background 300ms ease;
+}
+
+/* =========================================
+   GRID HOVER
+========================================= */
+
+@media (hover: hover) {
+  .ay-gallery-page-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .ay-gallery-page-item:hover::before {
+    border-color: #946a3b;
+  }
+
+  .ay-gallery-page-item:hover
+  .ay-gallery-page-image {
+    transform: scale(1.045);
+  }
+
+  .ay-gallery-page-item:hover
+  .ay-gallery-zoom-button {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .ay-gallery-zoom-button:hover {
+    background: rgba(181, 139, 87, 0.9);
+  }
+}
+
+.ay-gallery-page-item:focus-within
+.ay-gallery-zoom-button {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+@media (hover: none) {
+  .ay-gallery-zoom-button {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* =========================================
+   FULLSCREEN LIGHTBOX
+========================================= */
+
+.ay-gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100dvh;
+  min-width: 0;
+
+  background: rgba(19, 17, 15, 0.84);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  color: #fff;
+  isolation: isolate;
+}
+
+.ay-gallery-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.ay-gallery-lightbox-top {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 84px;
+  padding: 20px 38px;
+
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+.ay-gallery-counter-divider {
+  margin: 0 11px;
+  color: #b58b57;
+}
+
+.ay-gallery-lightbox-close {
+  display: grid;
+  place-items: center;
+
+  width: 43px;
+  height: 43px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+
+  cursor: pointer;
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease;
+}
+
+/* =========================================
+   LIGHTBOX STAGE
+========================================= */
+
+.ay-gallery-lightbox-stage {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+
+  padding: 0 12%;
+  overflow: hidden;
+}
+
+.ay-gallery-lightbox-main {
+  position: relative;
+  z-index: 2;
+
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+.ay-gallery-lightbox-image {
+  object-fit: contain;
+  object-position: center;
+
+  animation: ayGalleryReveal 350ms ease both;
+}
+
+@keyframes ayGalleryReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.975);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================
+   SIDE PREVIEWS
+========================================= */
+
+.ay-gallery-lightbox-preview {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+
+  width: 145px;
+  height: 210px;
+
+  padding: 0;
+  overflow: hidden;
+
+  border: 1px solid rgba(181, 139, 87, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+  opacity: 0.5;
+
+  transform: translateY(-50%) scale(0.9);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.ay-gallery-lightbox-preview img {
+  object-fit: cover;
+}
+
+.ay-gallery-lightbox-preview-prev {
+  left: 2%;
+}
+
+.ay-gallery-lightbox-preview-next {
+  right: 2%;
+}
+
+/* =========================================
+   LIGHTBOX ARROWS
+========================================= */
+
+.ay-gallery-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+
+  display: grid;
+  place-items: center;
+
+  width: 48px;
+  height: 48px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+
+  background: rgba(19, 17, 15, 0.65);
+  color: #fff;
+
+  cursor: pointer;
+  transform: translateY(-50%);
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease;
+}
+
+.ay-gallery-lightbox-arrow-prev {
+  left: 6%;
+}
+
+.ay-gallery-lightbox-arrow-next {
+  right: 6%;
+}
+
+.ay-gallery-lightbox-bottom {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 70px;
+  padding: 18px 38px;
+
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.ay-gallery-mobile-hint {
+  display: none;
+}
+
+/* =========================================
+   LIGHTBOX HOVER
+========================================= */
+
+@media (hover: hover) {
+  .ay-gallery-lightbox-close:hover,
+  .ay-gallery-lightbox-arrow:hover {
+    background: rgba(181, 139, 87, 0.8);
+    border-color: #b58b57;
+  }
+
+  .ay-gallery-lightbox-preview:hover {
+    opacity: 0.85;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* =========================================
+   PAGE FOOTER
+========================================= */
+
+.ay-gallery-page-footer {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+
+  margin-top: 90px;
+  padding-top: 38px;
+
+  border-top: 1px solid rgba(48, 44, 39, 0.13);
+}
+
+.ay-gallery-page-footer-label {
+  color: #b58b57;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.ay-gallery-page-footer h2 {
+  margin: 14px 0 0;
+  color: #302c27;
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.ay-gallery-page-footer h2 em {
+  color: #b58b57;
+  font-weight: 400;
+}
+
+.ay-gallery-page-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+
+  padding: 12px 0;
+  border-bottom: 1px solid #b58b57;
+
+  color: #302c27;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    color 250ms ease,
+    gap 250ms ease;
+}
+
+.ay-gallery-page-contact svg {
+  color: #b58b57;
+}
+
+@media (hover: hover) {
+  .ay-gallery-page-contact:hover {
+    color: #b58b57;
+    gap: 24px;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (min-width: 640px) and (max-width: 1279px) {
+  .ay-gallery-page {
+    padding: calc(82px + 40px) 0 70px;
+  }
+
+  .ay-gallery-page-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 16px;
+  }
+
+  .ay-gallery-zoom-button {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .ay-gallery-lightbox-stage {
+    padding-inline: 13%;
+  }
+
+  .ay-gallery-lightbox-preview {
+    width: 80px;
+    height: 130px;
+  }
+
+  .ay-gallery-lightbox-arrow-prev {
+    left: 3%;
+  }
+
+  .ay-gallery-lightbox-arrow-next {
+    right: 3%;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 639px) {
+  .ay-gallery-page {
+    padding: calc(82px + 24px) 0 55px;
+  }
+
+  .ay-gallery-page-container {
+    width: calc(100% - 28px);
+  }
+
+  .ay-gallery-page-header {
+    margin-bottom: 28px;
+  }
+
+  .ay-gallery-page-eyebrow {
+    margin-bottom: 16px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  .ay-gallery-page-heading h1 {
+    font-size: clamp(40px, 10vw, 54px);
+  }
+
+  .ay-gallery-page-heading p {
+    margin-top: 15px;
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .ay-gallery-page-count {
+    display: none;
+  }
+
+  .ay-gallery-page-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+
+  /* SMALLER L FRAME */
+
+  .ay-gallery-page-item {
+    padding: 0 0 7px 7px;
+  }
+
+  .ay-gallery-page-item::before {
+    top: 7px;
+    right: 7px;
+    border-left-width: 3px;
+    border-bottom-width: 3px;
+  }
+
+  .ay-gallery-zoom-button {
+    width: 40px;
+    height: 40px;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .ay-gallery-zoom-button svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .ay-gallery-lightbox-top {
+    min-height: 70px;
+    padding: 15px 20px;
+  }
+
+  .ay-gallery-lightbox-stage {
+    padding: 0 10px;
+    touch-action: pan-y;
+  }
+
+  .ay-gallery-lightbox-preview,
+  .ay-gallery-lightbox-arrow {
+    display: none;
+  }
+
+  .ay-gallery-lightbox-bottom {
+    min-height: 65px;
+    padding: 15px 20px;
+    font-size: 9px;
+  }
+
+  .ay-gallery-mobile-hint {
+    display: inline;
+  }
+
+  .ay-gallery-page-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    margin-top: 60px;
+    padding-top: 30px;
+  }
+
+  .ay-gallery-page-footer h2 {
+    font-size: 38px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-gallery-page-item,
+  .ay-gallery-page-image,
+  .ay-gallery-zoom-button,
+  .ay-gallery-lightbox-image,
+  .ay-gallery-lightbox-preview,
+  .ay-gallery-lightbox-arrow,
+  .ay-gallery-lightbox-close {
+    transition: none;
+    animation: none;
+  }
+}

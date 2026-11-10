@@ -1,0 +1,442 @@
+
+/* =========================================
+   AYTEKİN OTOMASYON
+   HOME GALLERY SECTION
+========================================= */
+
+.ay-gallery-section {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+
+  padding: 76px 0 70px;
+  background: #faf8f4;
+
+  overflow: clip;
+  scroll-margin-top: 82px;
+}
+
+.ay-gallery-container {
+  width: min(100% - 48px, 1360px);
+  margin-inline: auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.ay-gallery-header {
+  margin-bottom: 32px;
+}
+
+.ay-gallery-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 16px;
+
+  color: #b58b57;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.ay-gallery-eyebrow span {
+  width: 27px;
+  height: 1px;
+  background: currentColor;
+}
+
+.ay-gallery-heading-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.ay-gallery-heading-row h2 {
+  margin: 0;
+
+  color: #302c27;
+  font-family: Georgia, serif;
+
+  font-size: clamp(36px, 4vw, 62px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.ay-gallery-heading-row h2 em {
+  color: #b58b57;
+  font-weight: 400;
+}
+
+.ay-gallery-heading-row p {
+  max-width: 340px;
+  margin: 0 0 4px;
+
+  color: #77716a;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+/* =========================================
+   HOME GALLERY GRID
+========================================= */
+
+.ay-gallery-section .ay-gallery-page-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px 18px;
+}
+
+/* =========================================
+   PREMIUM L FRAME
+========================================= */
+
+.ay-gallery-section .ay-gallery-page-item {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+
+  margin: 0;
+  padding: 0 0 10px 10px;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  overflow: visible;
+  isolation: isolate;
+
+  transition: transform 350ms ease;
+}
+
+/* LEFT AND BOTTOM BORDER */
+
+.ay-gallery-section .ay-gallery-page-item::before {
+  content: "";
+  position: absolute;
+
+  top: 10px;
+  left: 0;
+  right: 10px;
+  bottom: 0;
+
+  z-index: 0;
+
+  border-left: 4px solid #b58b57;
+  border-bottom: 4px solid #b58b57;
+
+  pointer-events: none;
+
+  transition: border-color 300ms ease;
+}
+
+/* IMAGE WRAPPER */
+
+.ay-gallery-section .ay-gallery-image-wrap {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  background: #e9e2d7;
+}
+
+/* IMAGE */
+
+.ay-gallery-section .ay-gallery-page-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition:
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* IMAGE OVERLAY */
+
+.ay-gallery-section .ay-gallery-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: linear-gradient(
+    to top,
+    rgba(30, 25, 20, 0.24),
+    transparent 55%
+  );
+
+  pointer-events: none;
+}
+
+/* IMAGE NUMBER */
+
+.ay-gallery-section .ay-gallery-page-number {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  z-index: 2;
+
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* =========================================
+   ZOOM BUTTON
+========================================= */
+
+.ay-gallery-section .ay-gallery-zoom-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+
+  display: grid;
+  place-items: center;
+
+  width: 52px;
+  height: 52px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+
+  background: rgba(48, 44, 39, 0.58);
+  color: #fff;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: 0;
+  transform: translate(-50%, -40%);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease,
+    background 300ms ease;
+}
+
+/* =========================================
+   HOVER
+========================================= */
+
+@media (hover: hover) {
+  .ay-gallery-section .ay-gallery-page-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .ay-gallery-section
+  .ay-gallery-page-item:hover::before {
+    border-color: #946a3b;
+  }
+
+  .ay-gallery-section
+  .ay-gallery-page-item:hover
+  .ay-gallery-page-image {
+    transform: scale(1.045);
+  }
+
+  .ay-gallery-section
+  .ay-gallery-page-item:hover
+  .ay-gallery-zoom-button {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .ay-gallery-section
+  .ay-gallery-zoom-button:hover {
+    background: rgba(181, 139, 87, 0.9);
+  }
+}
+
+.ay-gallery-section
+.ay-gallery-page-item:focus-within
+.ay-gallery-zoom-button {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+@media (hover: none) {
+  .ay-gallery-section .ay-gallery-zoom-button {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* =========================================
+   MORE LINK
+========================================= */
+
+.ay-gallery-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.ay-gallery-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 17px;
+
+  padding: 12px 0;
+  border-bottom: 1px solid #b58b57;
+
+  color: #302c27;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+
+  text-decoration: none;
+
+  transition:
+    color 250ms ease,
+    gap 250ms ease;
+}
+
+.ay-gallery-more-link svg {
+  color: #b58b57;
+}
+
+@media (hover: hover) {
+  .ay-gallery-more-link:hover {
+    color: #b58b57;
+    gap: 24px;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1280px) and (min-height: 760px) {
+  .ay-gallery-section {
+    min-height: calc(100svh - 82px);
+    display: flex;
+    align-items: center;
+  }
+
+  .ay-gallery-container {
+    padding-block: 8px;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (min-width: 640px) and (max-width: 1279px) {
+  .ay-gallery-section {
+    padding: 65px 0;
+    scroll-margin-top: 72px;
+  }
+
+  .ay-gallery-section .ay-gallery-page-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 14px;
+  }
+
+  .ay-gallery-section .ay-gallery-zoom-button {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 639px) {
+  .ay-gallery-section {
+    padding: 48px 0 55px;
+    scroll-margin-top: 72px;
+  }
+
+  .ay-gallery-container {
+    width: calc(100% - 28px);
+  }
+
+  .ay-gallery-header {
+    margin-bottom: 25px;
+  }
+
+  .ay-gallery-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  .ay-gallery-heading-row {
+    display: block;
+  }
+
+  .ay-gallery-heading-row h2 {
+    font-size: clamp(34px, 9vw, 44px);
+  }
+
+  .ay-gallery-heading-row p {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .ay-gallery-section .ay-gallery-page-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+
+  .ay-gallery-section .ay-gallery-page-item {
+    padding: 0 0 7px 7px;
+  }
+
+  .ay-gallery-section
+  .ay-gallery-page-item::before {
+    top: 7px;
+    right: 7px;
+
+    border-left-width: 3px;
+    border-bottom-width: 3px;
+  }
+
+  .ay-gallery-section .ay-gallery-zoom-button {
+    width: 40px;
+    height: 40px;
+
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .ay-gallery-section .ay-gallery-zoom-button svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .ay-gallery-footer {
+    margin-top: 25px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-gallery-section .ay-gallery-page-item,
+  .ay-gallery-section .ay-gallery-page-image,
+  .ay-gallery-section .ay-gallery-zoom-button,
+  .ay-gallery-more-link {
+    transition: none;
+  }
+}

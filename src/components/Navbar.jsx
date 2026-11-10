@@ -24,6 +24,7 @@ import {
 
 import { services, serviceUrl } from "../data/services";
 import "./NavbarEnhancements.css";
+import "./GalleryNav.css";
 
 const navigation = [
   {
@@ -37,7 +38,8 @@ const navigation = [
   },
   {
     label: "Galeri",
-    href: "/galeri",
+    href: "/#galeri",
+    sectionId: "galeri",
   },
   {
     label: "İletişim",
@@ -347,6 +349,8 @@ export default function Navbar() {
   const [search, setSearch] = useState("");
   const [activeSection, setActiveSection] = useState("");
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [mobileGalleryOpen, setMobileGalleryOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] =
     useState(false);
 
@@ -358,6 +362,8 @@ export default function Navbar() {
     setMenuOpen(false);
     setServicesOpen(false);
     setMobileServicesOpen(false);
+    setGalleryOpen(false);
+    setMobileGalleryOpen(false);
   }, []);
 
   const closeServicesDropdown = useCallback(
@@ -477,6 +483,9 @@ const scrollToSection = useCallback(
       const headerHeight = getHeaderHeight();
       const activationLine = headerHeight + 24;
 
+      const gallerySection =
+        document.getElementById("galeri");
+
       const contactSection =
         document.getElementById("iletisim");
 
@@ -492,6 +501,14 @@ const scrollToSection = useCallback(
           rect.bottom > activationLine
         ) {
           setActiveSection("iletisim");
+          return;
+        }
+      }
+
+      if (gallerySection) {
+        const rect = gallerySection.getBoundingClientRect();
+        if (rect.top <= activationLine && rect.bottom > activationLine) {
+          setActiveSection("galeri");
           return;
         }
       }
@@ -564,7 +581,7 @@ const scrollToSection = useCallback(
 
     const sectionId =
       pendingSectionRef.current ||
-      (hash === "iletisim" || hash === "hakkimizda"
+      (hash === "iletisim" || hash === "hakkimizda" || hash === "galeri"
         ? hash
         : null);
 
@@ -791,6 +808,7 @@ const scrollToSection = useCallback(
 
  const handleServicesMouseEnter = () => {
   suppressHoverRef.current = false;
+  setGalleryOpen(false);
   setServicesOpen(true);
 };
 
@@ -812,6 +830,20 @@ const handleServicesFocus = () => {
       ) {
         document.activeElement.blur();
       }
+    }
+  };
+
+  const handleGalleryMouseEnter = () => {
+    setServicesOpen(false);
+    setGalleryOpen(true);
+  };
+
+  const handleGalleryMouseLeave = () => setGalleryOpen(false);
+
+  const handleGalleryKeyDown = (event) => {
+    if (event.key === "Escape") {
+      setGalleryOpen(false);
+      event.currentTarget.querySelector(".ay-gallery-nav-trigger")?.focus();
     }
   };
 
@@ -965,20 +997,77 @@ const handleServicesFocus = () => {
 
             {/* RIGHT NAVIGATION */}
             <div className="ay-nav-group ay-nav-group-right">
-              {navigation.slice(2).map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(event) =>
-                    handleNavigationClick(event, item)
+              {/* GALLERY DROPDOWN */}
+              <div
+                className="ay-gallery-nav-wrapper"
+                onMouseEnter={handleGalleryMouseEnter}
+                onMouseLeave={handleGalleryMouseLeave}
+                onKeyDown={handleGalleryKeyDown}
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget)) {
+                    setGalleryOpen(false);
                   }
-                  className={`ay-link ${
-                    isActiveLink(item) ? "active" : ""
+                }}
+              >
+                <button
+                  type="button"
+                  className={`ay-link ay-gallery-nav-trigger ${
+                    (pathname === "/galeri" ||
+                      (pathname === "/" && activeSection === "galeri"))
+                      ? "active"
+                      : ""
                   }`}
+                  aria-expanded={galleryOpen}
+                  aria-controls="ay-gallery-dropdown"
+                  onFocus={() => setGalleryOpen(true)}
+                  onClick={() => setGalleryOpen((open) => !open)}
                 >
-                  {item.label}
-                </Link>
-              ))}
+                  Galeri
+                  <ChevronDown size={14} strokeWidth={1.5} />
+                </button>
+
+                <div
+                  id="ay-gallery-dropdown"
+                  className={`ay-gallery-dropdown ${galleryOpen ? "is-open" : ""}`}
+                  aria-hidden={!galleryOpen}
+                  inert={!galleryOpen}
+                >
+                  <span className="ay-dropdown-eyebrow">GALERİ</span>
+                  <div className="ay-dropdown-list">
+                    <Link
+                      href="/#galeri"
+                      className="ay-dropdown-item"
+                      onClick={(event) => handleSectionNavigation(event, "galeri")}
+                    >
+                      <small>01</small>
+                      <span>Çalışmalarımız</span>
+                      <ArrowUpRight size={15} strokeWidth={1.5} />
+                    </Link>
+                    <Link
+                      href="/galeri"
+                      className="ay-dropdown-item"
+                      onClick={() => {
+                        closeAllMenus();
+                        suppressHoverRef.current = true;
+                      }}
+                    >
+                      <small>02</small>
+                      <span>Tüm Projelerimiz</span>
+                      <ArrowUpRight size={15} strokeWidth={1.5} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/#iletisim"
+                onClick={(event) => handleSectionNavigation(event, "iletisim")}
+                className={`ay-link ${
+                  pathname === "/" && activeSection === "iletisim" ? "active" : ""
+                }`}
+              >
+                İletişim
+              </Link>
             </div>
           </nav>
 
@@ -1072,7 +1161,8 @@ const handleServicesFocus = () => {
             aria-controls="ay-mobile-menu"
             onClick={() => {
               setMenuOpen((open) => !open);
-              setMobileServicesOpen(false);
+               setMobileServicesOpen(false);
+               setMobileGalleryOpen(false);
             }}
           >
             {menuOpen ? (
@@ -1182,6 +1272,47 @@ const handleServicesFocus = () => {
                           size={16}
                           strokeWidth={1.5}
                         />
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              ) : item.label === "Galeri" ? (
+                <div key="galeri" className="ay-mobile-services-group">
+                  <button
+                    type="button"
+                    className="ay-mobile-link ay-mobile-services-toggle"
+                    aria-expanded={mobileGalleryOpen}
+                    aria-controls="ay-mobile-gallery-list"
+                    onClick={() => {
+                     setMobileServicesOpen(false);
+                      setMobileGalleryOpen((open) => !open);
+                    }}
+                  >
+                    <span>Galeri</span>
+                    <span className="ay-mobile-link-meta">
+                      <small>03</small>
+                      <ChevronDown
+                        size={19}
+                        strokeWidth={1.6}
+                        className={mobileGalleryOpen ? "is-rotated" : ""}
+                      />
+                    </span>
+                  </button>
+                  {mobileGalleryOpen && (
+                    <div id="ay-mobile-gallery-list" className="ay-mobile-services-list">
+                      <Link
+                        href="/#galeri"
+                        onClick={(event) => handleSectionNavigation(event, "galeri")}
+                      >
+                        Çalışmalarımız
+                        <ArrowUpRight size={15} strokeWidth={1.5} />
+                      </Link>
+                      <Link
+                        href="/galeri"
+                        onClick={() => closeAllMenus()}
+                      >
+                        Tüm Projelerimiz
+                        <ArrowUpRight size={15} strokeWidth={1.5} />
                       </Link>
                     </div>
                   )}
