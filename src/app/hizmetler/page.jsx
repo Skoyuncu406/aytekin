@@ -1,4 +1,5 @@
 
+import { Suspense } from "react";
 import ServicesPage from "@/components/ServicesPage";
 
 export const metadata = {
@@ -8,5 +9,9 @@ export const metadata = {
 };
 
 export default function HizmetlerPage() {
-  return <ServicesPage />;
+  return (
+    <Suspense fallback={null}>
+      <ServicesPage />
+    </Suspense>
+  );
 }
