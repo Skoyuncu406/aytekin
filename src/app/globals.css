@@ -1,26 +1,1049 @@
+
 @import "tailwindcss";
 
+/* =========================================
+   AYTEKIN DESIGN SYSTEM
+========================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --oak: #b58b57;
+  --cream: #faf8f4;
+  --white: #fffaf2;
+  --ink: #302c27;
+
+  --call: #bd4941;
+  --whatsapp: #238b58;
+
+  --ease: cubic-bezier(.22, 1, .36, 1);
+
+  --header-height: 104px;
+  --header-scrolled: 82px;
+
+  --mobile-height: 82px;
+  --mobile-scrolled: 72px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 115px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: clip;
+
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-outfit), sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.font-display {
+  font-family: var(--font-italiana), serif;
+}
+
+::selection {
+  background: #89633d;
+  color: #fff;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.ay-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+
+  width: 100%;
+
+  background: var(--oak);
+  color: var(--white);
+
+  border-bottom: 1px solid rgba(255, 250, 242, .2);
+
+  transition: box-shadow .4s ease;
+}
+
+.ay-header.scrolled {
+  box-shadow: 0 12px 35px rgba(48, 44, 39, .16);
+}
+
+.ay-header-inner {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 1920px;
+  height: var(--header-height);
+
+  margin: 0 auto;
+  padding: 0 32px;
+
+  transition: height .5s var(--ease);
+}
+
+.ay-header.scrolled .ay-header-inner {
+  height: var(--header-scrolled);
+}
+
+/* =========================================
+   DESKTOP LEFT SEARCH
+========================================= */
+
+.ay-left {
+  display: flex;
+  align-items: center;
+
+  flex: 0 0 190px;
+  min-width: 0;
+}
+
+.ay-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  height: 45px;
+  padding: 0 1px;
+
+  border: 0;
+  border-bottom: 1px solid rgba(255, 250, 242, .65);
+  border-radius: 0;
+
+  background: transparent;
+
+  transition: border-color .35s ease;
+}
+
+.ay-search:focus-within {
+  border-bottom-color: var(--ink);
+}
+
+.ay-search-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 25px;
+  height: 30px;
+
+  color: var(--white);
+}
+
+.ay-search-icon-button svg {
+  transition:
+    transform .65s var(--ease),
+    color .3s ease;
+}
+
+.ay-search:hover .ay-search-icon-button svg,
+.ay-search:focus-within .ay-search-icon-button svg {
+  transform: rotate(90deg);
+  color: var(--ink);
+}
+
+.ay-search input {
+  display: block;
+  flex: 1;
+
+  width: 100%;
+  min-width: 0;
+
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+
+  background: transparent;
+
+  color: var(--white);
+  font-size: 13px;
+}
+
+.ay-search input::placeholder {
+  color: rgba(255, 250, 242, .9);
+  opacity: 1;
+}
+
+.ay-search input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* =========================================
+   DESKTOP CENTER NAVIGATION
+========================================= */
+
+.ay-desktop-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 0;
+  height: 100%;
+
+  transform: translate(-50%, -50%);
+}
+
+.ay-desktop-brand {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.ay-nav-group {
+  position: absolute;
+  top: 50%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 42px;
+
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.ay-nav-group-left {
+  right: 120px;
+  justify-content: flex-end;
+}
+
+.ay-nav-group-right {
+  left: 120px;
+  justify-content: flex-start;
+}
+
+.ay-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 13px 0;
+
+  color: var(--white);
+
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .02em;
+
+  transition: color .35s ease;
+}
+
+.ay-link::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 7px;
+
+  width: 100%;
+  height: 1px;
+
+  background: var(--ink);
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform .4s var(--ease);
+}
+
+.ay-link:hover,
+.ay-link.active {
+  color: var(--ink);
+}
+
+.ay-link:hover::after,
+.ay-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* =========================================
+   BRAND
+========================================= */
+
+.ay-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  white-space: nowrap;
+  text-align: center;
+}
+
+.ay-brand-main {
+  font-family: var(--font-italiana), serif;
+
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1;
+
+  color: var(--white);
+
+  transition: color .4s ease;
+}
+
+.ay-brand:hover .ay-brand-main {
+  color: var(--ink);
+}
+
+.ay-brand-sub {
+  margin-top: 6px;
+
+  color: #fff0d9;
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .45em;
+}
+
+/* =========================================
+   SHARED CONTACT BUTTONS
+========================================= */
+
+.ay-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 12px;
+  margin-left: auto;
+}
+
+.ay-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+  flex-shrink: 0;
+
+  width: auto;
+  height: 49px;
+  padding: 0 19px;
+
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .035em;
+
+  white-space: nowrap;
+
+  transition:
+    transform .4s var(--ease),
+    background .4s ease,
+    border-color .4s ease;
+}
+
+.ay-contact:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, .4);
+}
+
+.ay-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .16);
+}
+
+.ay-contact-icon svg {
+  transition: transform .5s var(--ease);
+}
+
+.ay-contact:hover .ay-contact-icon svg {
+  transform: rotate(20deg) scale(1.13);
+}
+
+.ay-contact-label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* =========================================
+   CALL BUTTON
+========================================= */
+
+.ay-contact-call {
+  background: var(--call);
+  animation: ay-call-glow 6s ease-in-out infinite;
+}
+
+.ay-contact-call:hover {
+  background: #a3332d;
+}
+
+/* =========================================
+   WHATSAPP BUTTON
+========================================= */
+
+.ay-contact-whatsapp {
+  background: var(--whatsapp);
+  animation: ay-whatsapp-glow 6s ease-in-out infinite;
+}
+
+.ay-contact-whatsapp:hover {
+  background: #176b42;
+}
+
+/* =========================================
+   CONTACT ANIMATIONS
+========================================= */
+
+@keyframes ay-call-glow {
+  0%, 8%, 28%, 100% {
+    box-shadow: 0 0 0 rgba(189, 73, 65, 0);
+  }
+
+  14%, 21% {
+    box-shadow:
+      0 0 0 4px rgba(189, 73, 65, .14),
+      0 0 22px rgba(189, 73, 65, .5);
+  }
+}
+
+@keyframes ay-whatsapp-glow {
+  0%, 47%, 69%, 100% {
+    box-shadow: 0 0 0 rgba(35, 139, 88, 0);
+  }
+
+  54%, 62% {
+    box-shadow:
+      0 0 0 4px rgba(35, 139, 88, .14),
+      0 0 22px rgba(35, 139, 88, .5);
+  }
+}
+
+/* =========================================
+   HIDE MOBILE ELEMENTS ON DESKTOP
+========================================= */
+
+.ay-mobile-brand,
+.ay-mobile-actions,
+.ay-hamburger,
+.ay-mobile-menu {
+  display: none;
+}
+
+/* =========================================
+   MOBILE MENU BASE
+========================================= */
+
+.ay-mobile-menu {
+  position: fixed;
+  inset: var(--mobile-height) 0 0;
+
+  z-index: 90;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* Hero remains visible behind a frosted glass layer. */
+  background: rgba(37, 34, 30, .48);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  backdrop-filter: blur(22px) saturate(125%);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-12px);
+
+  transition:
+    opacity .4s ease,
+    visibility .4s ease,
+    transform .4s var(--ease);
+}
+
+.ay-mobile-menu.scrolled {
+  top: var(--mobile-scrolled);
+}
+
+.ay-mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0);
+}
+
+.ay-mobile-menu-inner {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+  padding: 24px 22px 36px;
+}
+
+/* =========================================
+   MOBILE MENU SEARCH
+========================================= */
+
+.ay-menu-search {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: 100%;
+  height: 53px;
+
+  margin-bottom: 18px;
+  padding: 0 2px;
+
+  border-bottom: 1px solid rgba(255, 250, 242, .65);
+
+  color: var(--white);
+}
+
+.ay-search-symbol {
+  flex-shrink: 0;
+}
+
+.ay-menu-search input {
+  display: block;
+  flex: 1;
+
+  width: 100%;
+  min-width: 0;
+
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+
+  background: transparent;
+
+  color: var(--white);
+  font-size: 14px;
+}
+
+.ay-menu-search input::placeholder {
+  color: rgba(255, 250, 242, .85);
+  opacity: 1;
+}
+
+.ay-menu-search input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.ay-menu-search-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+
+  color: var(--white);
+}
+
+.ay-menu-search-submit:disabled {
+  opacity: .35;
+}
+
+/* =========================================
+   MOBILE MENU LINKS
+========================================= */
+
+.ay-mobile-navigation {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0;
+}
+
+.ay-mobile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  min-height: 0;
+  margin: 0;
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgba(255, 250, 242, .28);
+
+  color: var(--white);
+
+  font-family: var(--font-italiana), serif;
+  font-size: 35px;
+  line-height: 1.15;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+
+  transition:
+    color .3s ease,
+    padding-left .4s var(--ease);
+}
+
+.ay-mobile-link:hover {
+  color: #e5c79c;
+  padding-left: 6px;
+}
+
+.ay-mobile-link-meta {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.ay-mobile-link-meta small {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 10px;
+}
+
+/* =========================================
+   COMPACT DESKTOP
+   1280px - 1535px
+========================================= */
+
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .ay-header-inner {
+    padding: 0 22px;
+  }
+
+  .ay-left {
+    flex-basis: 150px;
+  }
+
+  .ay-nav-group {
+    gap: 25px;
+  }
+
+  .ay-nav-group-left {
+    right: 105px;
+  }
+
+  .ay-nav-group-right {
+    left: 105px;
+  }
+
+  .ay-link {
+    font-size: 13px;
+  }
+
+  .ay-brand-main {
+    font-size: 33px;
+  }
+
+  .ay-right {
+    gap: 7px;
+  }
+
+  .ay-contact {
+    height: 43px;
+    padding: 0 10px;
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .ay-contact-icon {
+    width: 23px;
+    height: 23px;
+  }
+
+  .ay-contact-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* =========================================
+   TABLET & MOBILE
+   MAX 1279px
+========================================= */
+
+@media (max-width: 1279px) {
+  html {
+    scroll-padding-top: 95px;
+  }
+
+  /* MAIN HEADER LAYOUT */
+
+  .ay-header-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+
+    column-gap: 14px;
+
+    height: var(--mobile-height);
+    padding: 0 20px;
+  }
+
+  .ay-header.scrolled .ay-header-inner {
+    height: var(--mobile-scrolled);
+  }
+
+  /* HIDE DESKTOP SECTIONS */
+
+  .ay-left,
+  .ay-desktop-center,
+  .ay-right {
+    display: none;
+  }
+
+  /* LEFT BRAND */
+
+  .ay-mobile-brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    min-width: 0;
+  }
+
+  .ay-mobile-brand .ay-brand {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .ay-mobile-brand .ay-brand-main {
+    font-size: 30px;
+  }
+
+  .ay-mobile-brand .ay-brand-sub {
+    font-size: 8px;
+    letter-spacing: .35em;
+  }
+
+  /* CENTER CONTACT ACTIONS */
+
+  .ay-mobile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+    min-width: 0;
+  }
+
+  /* SAME PILL DESIGN AS DESKTOP */
+
+  .ay-mobile-actions .ay-mobile-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+    flex-shrink: 0;
+
+    width: auto;
+    height: 43px;
+    padding: 0 14px;
+
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 999px;
+
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    white-space: nowrap;
+
+    transition:
+      transform .4s var(--ease),
+      background .4s ease,
+      border-color .4s ease;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, .4);
+  }
+
+  /* ICON CIRCLE */
+
+  .ay-mobile-actions .ay-mobile-contact .ay-contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .16);
+  }
+
+  .ay-mobile-actions .ay-mobile-contact .ay-contact-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact .ay-contact-label {
+    display: inline-block;
+  }
+
+  /* RED CALL */
+
+  .ay-mobile-actions .ay-contact-call {
+    background: var(--call);
+    animation: ay-call-glow 6s ease-in-out infinite;
+  }
+
+  .ay-mobile-actions .ay-contact-call:hover {
+    background: #a3332d;
+  }
+
+  /* GREEN WHATSAPP */
+
+  .ay-mobile-actions .ay-contact-whatsapp {
+    background: var(--whatsapp);
+    animation: ay-whatsapp-glow 6s ease-in-out infinite;
+  }
+
+  .ay-mobile-actions .ay-contact-whatsapp:hover {
+    background: #176b42;
+  }
+
+  /* RIGHT HAMBURGER */
+
+  .ay-hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    justify-self: end;
+    flex-shrink: 0;
+
+    width: 43px;
+    height: 43px;
+
+    border: 1px solid rgba(255, 250, 242, .6);
+    border-radius: 50%;
+
+    color: var(--white);
+    background: transparent;
+
+    transition:
+      background .35s ease,
+      color .35s ease;
+  }
+
+  .ay-hamburger:hover {
+    background: var(--white);
+    color: var(--ink);
+  }
+
+  /* SHOW MOBILE MENU */
+
+  .ay-mobile-menu {
+    display: block;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+   MAX 639px
+========================================= */
+
+@media (max-width: 639px) {
+  .ay-header-inner {
+    column-gap: 8px;
+    padding: 0 12px;
+  }
+
+  /* BRAND */
+
+  .ay-mobile-brand .ay-brand-main {
+    font-size: clamp(21px, 5.5vw, 28px);
+  }
+
+  .ay-mobile-brand .ay-brand-sub {
+    margin-top: 4px;
+
+    font-size: 6px;
+    letter-spacing: .25em;
+  }
+
+  /* CONTACT BUTTONS */
+
+  .ay-mobile-actions {
+    gap: 5px;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact {
+    height: 35px;
+    padding: 0 8px;
+
+    gap: 4px;
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact .ay-contact-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact .ay-contact-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* HAMBURGER */
+
+  .ay-hamburger {
+    width: 35px;
+    height: 35px;
+  }
+
+  .ay-hamburger svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* MENU */
+
+  .ay-mobile-menu-inner {
+    padding: 18px 18px 30px;
+  }
+
+  .ay-menu-search {
+    margin-bottom: 14px;
+  }
+
+  .ay-mobile-link {
+    padding: 14px 0;
+    font-size: 32px;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL MOBILE
+   MAX 359px
+========================================= */
+
+@media (max-width: 359px) {
+  .ay-header-inner {
+    column-gap: 5px;
+    padding: 0 7px;
+  }
+
+  .ay-mobile-brand .ay-brand-main {
+    font-size: 19px;
+  }
+
+  .ay-mobile-brand .ay-brand-sub {
+    font-size: 5px;
+    letter-spacing: .2em;
+  }
+
+  .ay-mobile-actions {
+    gap: 4px;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact {
+    height: 32px;
+    padding: 0 5px;
+
+    gap: 3px;
+    font-size: 8px;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact .ay-contact-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .ay-mobile-actions .ay-mobile-contact .ay-contact-icon svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .ay-hamburger {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ay-hamburger svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+.ay-header a:focus-visible,
+.ay-header button:focus-visible,
+.ay-mobile-menu a:focus-visible,
+.ay-mobile-menu button:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }

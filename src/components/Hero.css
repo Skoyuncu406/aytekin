@@ -1,0 +1,666 @@
+
+/* =========================================
+   AYTEKIN HERO
+========================================= */
+
+.ay-hero {
+  --hero-nav-height: var(--header-height);
+
+  position: relative;
+  width: 100%;
+  height: 270svh;
+
+  margin-top: var(--header-height);
+
+  background: #242729;
+}
+
+/* =========================================
+   FULL VIEWPORT STAGE
+========================================= */
+
+.ay-hero-stage {
+  position: sticky;
+
+  top: var(--hero-nav-height);
+
+  width: 100%;
+  height: calc(100svh - var(--hero-nav-height));
+
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.ay-hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  overflow: hidden;
+  background: #363b38;
+}
+
+.ay-hero-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-image:
+    url("/images/hero-architecture.jpg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  transform-origin: center;
+  will-change: transform;
+}
+
+.ay-hero-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(18, 24, 23, .82) 0%,
+      rgba(18, 24, 23, .58) 42%,
+      rgba(18, 24, 23, .15) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(18, 24, 23, .45),
+      transparent 35%
+    );
+}
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.ay-hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 65px clamp(24px, 7vw, 125px);
+
+  color: #fffaf2;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.ay-hero-content-inner {
+  width: 100%;
+  max-width: 850px;
+}
+
+.ay-hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  margin-bottom: 30px;
+
+  color: #e4c9a4;
+
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .22em;
+}
+
+.ay-hero-eyebrow-line {
+  display: block;
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 1px;
+
+  background: #d6b889;
+}
+
+.ay-hero-title {
+  margin: 0;
+
+  font-family: var(--font-italiana), serif;
+  font-size: clamp(65px, 7.7vw, 132px);
+  font-weight: 400;
+  line-height: .97;
+  letter-spacing: -.035em;
+}
+
+.ay-hero-title em {
+  color: #d7b589;
+  font-style: normal;
+}
+
+.ay-hero-description {
+  max-width: 520px;
+
+  margin: 30px 0 0;
+
+  color: rgba(255, 250, 242, .85);
+
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 400;
+  line-height: 1.9;
+}
+
+/* =========================================
+   HERO BUTTONS
+========================================= */
+
+.ay-hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.ay-hero-primary-button,
+.ay-hero-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+  gap: 14px;
+
+  min-height: 54px;
+  padding: 0 22px;
+
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: .025em;
+
+  text-align: center;
+  white-space: nowrap;
+
+  border: 1px solid transparent;
+  border-radius: 0;
+
+  transition:
+    background .4s ease,
+    color .4s ease,
+    border-color .4s ease,
+    transform .4s var(--ease);
+}
+
+.ay-hero-primary-button svg,
+.ay-hero-secondary-button svg {
+  flex-shrink: 0;
+
+  width: 18px;
+  height: 18px;
+
+  transition: transform .4s var(--ease);
+}
+
+/* PRIMARY BUTTON */
+
+.ay-hero-primary-button {
+  background: #b58b57;
+  color: #fffaf2;
+
+  border-color: #b58b57;
+}
+
+.ay-hero-primary-button:hover {
+  background: #fffaf2;
+  color: #302c27;
+  border-color: #fffaf2;
+
+  transform: translateY(-3px);
+}
+
+.ay-hero-primary-button:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* SECONDARY BUTTON */
+
+.ay-hero-secondary-button {
+  background: transparent;
+  color: #fffaf2;
+
+  border-color: rgba(255, 250, 242, .65);
+}
+
+.ay-hero-secondary-button:hover {
+  background: rgba(255, 250, 242, .1);
+  color: #fffaf2;
+  border-color: #fffaf2;
+
+  transform: translateY(-3px);
+}
+
+.ay-hero-secondary-button:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* =========================================
+   METAL ROLLER SHUTTER
+========================================= */
+
+.ay-hero-shutter {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #363b3e;
+
+  will-change: transform;
+}
+
+.ay-hero-shutter-surface {
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #42484b 0px,
+      #454b4e 4px,
+      #3c4245 14px,
+      #303639 19px,
+      #24292c 21px,
+      #52585b 23px,
+      #454b4e 25px,
+      #42484b 29px
+    );
+}
+
+.ay-hero-shutter-light {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, .28) 0%,
+      transparent 17%,
+      rgba(255, 255, 255, .09) 47%,
+      transparent 73%,
+      rgba(0, 0, 0, .3) 100%
+    );
+}
+
+.ay-hero-shutter::before,
+.ay-hero-shutter::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 12px;
+  z-index: 2;
+
+  background: linear-gradient(
+    90deg,
+    #1b2022,
+    #555b5e,
+    #242a2d
+  );
+}
+
+.ay-hero-shutter::before {
+  left: 0;
+}
+
+.ay-hero-shutter::after {
+  right: 0;
+}
+
+.ay-hero-shutter-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 15px;
+
+  background: linear-gradient(
+    to bottom,
+    #171b1d,
+    #63696b 35%,
+    #1a1e20 100%
+  );
+
+  box-shadow: 0 7px 15px rgba(0, 0, 0, .45);
+}
+
+/* =========================================
+   SHUTTER BRAND
+========================================= */
+
+.ay-hero-shutter-brand {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  text-align: center;
+  color: #fffaf2;
+}
+
+.ay-hero-shutter-brand-top {
+  font-family: var(--font-italiana), serif;
+
+  font-size: clamp(64px, 10vw, 160px);
+  font-weight: 400;
+  line-height: 1;
+
+  letter-spacing: -.045em;
+
+  text-shadow: 0 5px 25px rgba(0, 0, 0, .2);
+}
+
+.ay-hero-shutter-brand-bottom {
+  margin-top: 13px;
+
+  font-size: clamp(13px, 1.6vw, 21px);
+  font-weight: 400;
+
+  letter-spacing: .65em;
+  padding-left: .65em;
+
+  color: #e5c79c;
+}
+
+.ay-hero-shutter-brand-line {
+  width: 70px;
+  height: 1px;
+
+  margin-top: 35px;
+
+  background: #c9a574;
+}
+
+.ay-hero-shutter-brand-caption {
+  margin-top: 23px;
+
+  color: rgba(255, 250, 242, .8);
+
+  font-size: 10px;
+  letter-spacing: .25em;
+}
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
+
+.ay-hero-scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  z-index: 8;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 13px;
+
+  transform: translateX(-50%);
+
+  color: #fffaf2;
+}
+
+.ay-hero-scroll-hint > span {
+  font-size: 10px;
+  letter-spacing: .22em;
+  white-space: nowrap;
+}
+
+.ay-hero-scroll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 35px;
+  height: 35px;
+
+  border: 1px solid rgba(255, 250, 242, .55);
+  border-radius: 50%;
+
+  animation: ay-hero-scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes ay-hero-scroll-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1279px) {
+  .ay-hero {
+    --hero-nav-height: var(--mobile-height);
+
+    height: 270svh;
+    margin-top: var(--mobile-height);
+  }
+
+  .ay-hero-content {
+    padding: 50px 6vw;
+  }
+
+  .ay-hero-title {
+    font-size: clamp(62px, 9vw, 105px);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 639px) {
+  .ay-hero {
+    height: 230svh;
+  }
+
+  .ay-hero-content {
+    justify-content: center;
+    padding: 35px 22px 65px;
+  }
+
+  .ay-hero-image {
+    background-position: 60% center;
+  }
+
+  .ay-hero-image-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(18, 24, 23, .78),
+        rgba(18, 24, 23, .35)
+      ),
+      linear-gradient(
+        0deg,
+        rgba(18, 24, 23, .45),
+        transparent 55%
+      );
+  }
+
+  .ay-hero-eyebrow {
+    gap: 10px;
+    margin-bottom: 22px;
+
+    font-size: 8px;
+    letter-spacing: .14em;
+  }
+
+  .ay-hero-eyebrow-line {
+    width: 24px;
+  }
+
+  .ay-hero-title {
+    font-size: clamp(48px, 12vw, 75px);
+    line-height: 1.02;
+  }
+
+  .ay-hero-description {
+    margin-top: 22px;
+
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  /* MOBILE BUTTONS */
+
+  .ay-hero-buttons {
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  .ay-hero-primary-button,
+  .ay-hero-secondary-button {
+    min-height: 46px;
+    max-width: 100%;
+
+    padding: 0 13px;
+    gap: 9px;
+
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+
+  .ay-hero-primary-button svg,
+  .ay-hero-secondary-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* SHUTTER BRAND */
+
+  .ay-hero-shutter-brand-top {
+    font-size: clamp(55px, 15vw, 85px);
+  }
+
+  .ay-hero-shutter-brand-bottom {
+    margin-top: 10px;
+
+    font-size: 12px;
+    letter-spacing: .45em;
+    padding-left: .45em;
+  }
+
+  .ay-hero-shutter-brand-caption {
+    font-size: 8px;
+    letter-spacing: .13em;
+  }
+
+  .ay-hero-scroll-hint {
+    bottom: 25px;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL MOBILE
+========================================= */
+
+@media (max-width: 359px) {
+  .ay-hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ay-hero-primary-button,
+  .ay-hero-secondary-button {
+    max-width: 100%;
+    font-size: 10px;
+  }
+}
+
+/* =========================================
+   SHORT SCREENS
+========================================= */
+
+@media (max-height: 650px) {
+  .ay-hero-content {
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+
+  .ay-hero-title {
+    font-size: clamp(42px, 7vw, 80px);
+  }
+
+  .ay-hero-description {
+    margin-top: 15px;
+  }
+
+  .ay-hero-buttons {
+    margin-top: 18px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ay-hero {
+    height: auto;
+  }
+
+  .ay-hero-stage {
+    position: relative;
+    top: auto;
+  }
+
+  .ay-hero-shutter,
+  .ay-hero-scroll-hint {
+    display: none;
+  }
+
+  .ay-hero-content {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .ay-hero-image {
+    transform: none;
+  }
+
+  .ay-hero-scroll-icon {
+    animation: none;
+  }
+}
