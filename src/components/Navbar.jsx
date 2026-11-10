@@ -411,35 +411,57 @@ export default function Navbar() {
      SECTION SCROLL
   ========================================= */
 
-  const scrollToSection = useCallback(
-    (sectionId, behavior = "smooth") => {
-      const section =
-        document.getElementById(sectionId);
 
-      if (!section) return false;
+const scrollToSection = useCallback(
+  (sectionId, behavior = "smooth") => {
+    const section = document.getElementById(sectionId);
 
-      const headerHeight = getHeaderHeight();
+    if (!section) return false;
 
-      const sectionTop =
-        section.getBoundingClientRect().top +
-        window.scrollY;
+    const sectionTop =
+      section.getBoundingClientRect().top +
+      window.scrollY;
 
-      // İletişim bölümünün başlangıcını
-      // Navbar'ın alt kenarına hizala.
-      const targetTop = Math.max(
-        0,
-        sectionTop - headerHeight
-      );
+    // globals.css dosyasındaki gerçek kompakt yükseklikler
+    const rootStyles = getComputedStyle(
+      document.documentElement
+    );
 
-      window.scrollTo({
-        top: targetTop,
-        behavior,
-      });
+    const isMobile = window.matchMedia(
+      "(max-width: 1279px)"
+    ).matches;
 
-      return true;
-    },
-    []
-  );
+    const variableName = isMobile
+      ? "--mobile-scrolled"
+      : "--header-scrolled";
+
+    const compactHeight = parseFloat(
+      rootStyles.getPropertyValue(variableName)
+    );
+
+    const headerOffset = Number.isFinite(compactHeight)
+      ? compactHeight
+      : isMobile
+        ? 72
+        : 82;
+
+    // Hedef bölüm Navbar'ın hemen altında başlar.
+    const targetTop = Math.max(
+      0,
+      sectionTop - headerOffset
+    );
+
+    window.scrollTo({
+      top: targetTop,
+      behavior,
+    });
+
+    return true;
+  },
+  []
+);
+
+
 
   /* =========================================
      ACTIVE SECTION DETECTION
@@ -727,9 +749,29 @@ export default function Navbar() {
     suppressHoverRef.current = true;
   };
 
-  const handleLogoClick = () => {
+  const handleLogoClick = (event) => {
     closeAllMenus();
     suppressHoverRef.current = true;
+    pendingSectionRef.current = null;
+    setActiveSection("");
+
+    if (pathname === "/") {
+      event.preventDefault();
+
+      if (window.location.hash) {
+        window.history.replaceState(window.history.state, "", "/");
+      }
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      window.scrollTo({
+        top: 0,
+        behavior: reducedMotion ? "instant" : "smooth",
+      });
+    }
+    // Diğer sayfalarda Link normal biçimde / adresine yönlendirir.
   };
 
   const isActiveLink = (item) => {
