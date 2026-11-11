@@ -1,19 +1,74 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+
 import GalleryViewer from "@/components/GalleryViewer";
+
 import "./gallery-page.css";
 
+/* =========================================
+   AYTEKİN OTOMASYON
+   GALLERY PAGE SEO
+========================================= */
+
+const siteUrl = "https://www.aytekinotomasyon.com";
+
+const pageUrl = `${siteUrl}/galeri`;
+
+const pageTitle = "Gaziantep Otomasyon Projeleri ve Uygulama Galerisi";
+
+const fullTitle = `${pageTitle} | Aytekin Otomasyon`;
+
+const pageDescription =
+  "Aytekin Otomasyon'un Gaziantep'teki otomatik kapı, kepenk, panjur, pergola ve otomasyon çalışmalarını galerimizde keşfedin. Projelerimizden seçilmiş görselleri inceleyin.";
+
+/* =========================================
+   PAGE METADATA
+========================================= */
+
 export const metadata = {
-  title: "Galeri | Aytekin Otomasyon",
-  description:
-    "Aytekin Otomasyon tarafından gerçekleştirilen otomasyon projeleri ve uygulamalarından seçilmiş 19 görsel.",
+  title: {
+    absolute: fullTitle,
+  },
+
+  description: pageDescription,
+
+  alternates: {
+    canonical: pageUrl,
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: pageUrl,
+    siteName: "Aytekin Otomasyon",
+    title: fullTitle,
+    description: pageDescription,
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: fullTitle,
+    description: pageDescription,
+  },
 };
+
+/* =========================================
+   GALLERY IMAGES
+========================================= */
 
 const galleryImages = Array.from({ length: 19 }, (_, index) => ({
   id: index + 1,
+
   src: `/images/gallery/gallery-${String(index + 1).padStart(2, "0")}.webp`,
-  alt: `Aytekin Otomasyon proje görseli ${index + 1}`,
+
+  alt: `Aytekin Otomasyon otomatik kapı, kepenk ve otomasyon uygulamaları - galeri görseli ${
+    index + 1
+  }`,
 }));
+
+/* =========================================
+   GALLERY PAGE
+========================================= */
 
 export default function GalleryPage() {
   return (
